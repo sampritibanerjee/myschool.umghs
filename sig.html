@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+    <link rel="stylesheet" href="new.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+
+
+<head>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Montserrat";
+        }
+        
+        section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url(scl27.jpg);
+            background-size: cover;
+        }
+        
+        .container {
+            max-width: 400px;
+            width: 90%;
+            padding: 20px;
+            box-shadow: 0px 0px 20px #00000020;
+            border-radius: 8px;
+            background-color: white;
+            opacity: 0.8;
+        }
+        
+        .step {
+            display: none;
+        }
+        
+        .step.active {
+            display: block;
+        }
+        
+        .form-group {
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            border: 1.7px solid rgba(128, 128, 128, 0.418);
+            padding: 5px;
+            font-size: 22px;
+            margin-top: 5px;
+            border-radius: 4px;
+        }
+        
+        button.next-btn,
+        button.previous-btn,
+        button.submit-btn {
+            float: right;
+            margin-top: 20px;
+            padding: 10px 30px;
+            border: none;
+            outline: none;
+            background-color: rgb(100, 181, 219);
+            font-family: "Montserrat";
+            font-size: 18px;
+            cursor: pointer;
+            /* text-align: right; */
+        }
+        
+        button.previous-btn {
+            float: left;
+        }
+        
+        button.submit-btn {
+            background-color: rgb(131, 158, 248);
+        }
+
+
+  
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section>
+        <div class="container">
+            <center>
+                <h1>sign up from</h1>
+            </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <form id="regForm" action="connection.php" method="POST">
+                <div class="step step-1 active" id="pg1" >
+                    <div class="form-group"><label for="student name">Student name</label><input type="text" id=" name" name="na"></div>
+                    <div class="form-group"><label for="student contact no.">student contact no.</label><input type="text" id="student contact no." name="student contact no."></div>
+                    <div class="form-group"><label for="email id">email id</label><input type="text" id="email" name="me "></div>
+                    <div class="form-group"><label for="guardian name">guardian name</label><input type="text" id="guardian name" name="guardianname"></div>
+                    <div class="form-group"><label for="guardian contact no">guardian contact no</label><input type="text" id="mobile" name="mo"></div><button type="button" class="next-btn">Next</button></div>
+                <div class="step step-2" id='pg2'>
+                    <div class="form-group"><label for="course">course</label><input type="text" id="course" name="course"></div>
+                    <div class="form-group"><label for="friend's name">local guardian name</label>
+                        <input type="text" id="local guardian name" name="lgn"></div>
+                    <div class="form-group"><label for="friend's mail id">his / her mail id</label>
+                        <input type="text" id="friend's mail id" name="friend's mail id"></div>
+                    <div class="form-group"><label for="friend's number">class</label>
+                        <input type="number" id="class" name="class"></div>
+                    <button type="button" class="previous-btn">Prev</button><button type="button" class="next-btn">Next</button></div>
+                <div class="step step-3" id='pg3'>
+                    <div class="form-group"><label for="course">course</label><input type="text" id="course" name="course"></div>
+                    <div class="form-group"><label for="2nd friend's name">age</label>
+                        <input type="text" id="age" name="age"></div>
+                    <div class="form-group"><label for="2nd friend's mail id">city</label>
+                        <input type="text" id="city" name="city"></div>
+                    <div class="form-group"><label for="2nd friend's number">DOB</label>
+                        <input type="number" id="dob" name="dob"></div>
+
+
+                    <button type="button" class="previous-btn">Prev</button><button type="submit" class="submit-btn">Submit</button></div>
+            </form>
+        </div>
+    </section>
+    <script>
+        const steps = Array.from(document.querySelectorAll("form .step"));
+        const nextBtn = document.querySelectorAll("form .next-btn");
+        const prevBtn = document.querySelectorAll("form .previous-btn");
+        const form = document.querySelector("form");
+
+        nextBtn.forEach((button) => {
+            button.addEventListener("click", () => {
+                changeStep("next");
+            });
+        });
+        prevBtn.forEach((button) => {
+            button.addEventListener("click", () => {
+                changeStep("prev");
+            });
+        });
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const inputs = [];
+            form.querySelectorAll("input").forEach((input) => {
+                const {
+                    name,
+                    value
+                } = input;
+                inputs.push({
+                    name,
+                    value
+                });
+            });
+            console.log(inputs);
+            form.reset();
+        });
+
+        function changeStep(btn) {
+            let index = 0;
+            const active = document.querySelector(".active");
+            index = steps.indexOf(active);
+            steps[index].classList.remove("active");
+            if (btn === "next") {
+                index++;
+            } else if (btn === "prev") {
+                index--;
+            }
+            steps[index].classList.add("active");
+        }
+    </script>
+</body>
+
+</html>
